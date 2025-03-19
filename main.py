@@ -3,8 +3,8 @@ import spotipy
 import sys
 from spotipy.oauth2 import SpotifyClientCredentials
 
-CLIENT_ID = ''
-CLIENT_SECRET = ''
+CLIENT_ID = '37e244d77b054f80909cfa3fb306c0a8'
+CLIENT_SECRET = 'ee786be6b77f4fb29c7e4620737db52a'
 
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET))
 
@@ -48,9 +48,20 @@ def music_info():
 def playlist_info():
     while True:
         playlist_name = input("플레이리스트 코드를 입력하세요.(종료 : exit): " ).strip()
-        if playlist_name.lower() =="exit":
+        if playlist_name.lower() == "exit":
             print("프로그램 종료")
             break
+
+        results = sp.search(q=playlist_name, limit=1, type="playlist")
+        if results['playlists']['items']:
+            playlist = results['playlists']['items'][0]
+            print("\n[플레이리스트 정보]")
+            print(f"이름: {playlist['name']}")
+            print(f"설명: {playlist['description']}")
+            print(f"총 트랙 수: {playlist['tracks']['total']}")
+            print(f"Spotify 링크: {playlist['external_urls']['spotify']}")
+        else:
+            print("❌ 해당 플레이리스트를 찾을 수 없습니다.")
     
 
 def main():
