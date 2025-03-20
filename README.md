@@ -1,4 +1,4 @@
-# SpotifyRCMD
+# SPFYpy
 스포티파이 api를 사용한 스포티파이 전용 프로그램 입니다.
 
 프로그램을 실행시키면 PlaylistRandomRCMD , MusicInfo , PlaylistInfo, ArtistInfo 중에서 하나를 고를수 있으며
