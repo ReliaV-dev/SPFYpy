@@ -45,27 +45,29 @@ def music_info():
             print(f"Spotify 링크: {track['external_urls']['spotify']}")
         else:
             print("❌ 해당 노래를 찾을 수 없습니다.")
+            
+            
 def playlist_info():
-    while True:
-        playlist_name = input("플레이리스트 코드를 입력하세요.(종료 : exit): " ).strip()
-        if playlist_name.lower() == "exit":
+     while True:
+        playlist_id = input("플레이리스트 ID를 입력하세요.(종료 : exit): ").strip()
+        if playlist_id.lower() == "exit":
             print("프로그램 종료")
             break
 
-        results = sp.search(q=playlist_name, limit=1, type="playlist")
-        if results['playlists']['items']:
-            playlist = results['playlists']['items'][0]
+        try:
+            playlist = sp.playlist(playlist_id)
             print("\n[플레이리스트 정보]")
             print(f"이름: {playlist['name']}")
             print(f"설명: {playlist['description']}")
             print(f"총 트랙 수: {playlist['tracks']['total']}")
             print(f"Spotify 링크: {playlist['external_urls']['spotify']}")
-        else:
-            print("❌ 해당 플레이리스트를 찾을 수 없습니다.")
+        except Exception as e:
+            print(f"❌ 해당 플레이리스트를 찾을 수 없습니다: {e}")
+
     
 
 def main():
-    Command_list = ["PlaylistRandomRCMD", "MusicInfo", "Playlist_Info"]
+    Command_list = ["PlaylistRandomRCMD", "MusicInfo", "PlaylistInfo"]
     Command_name = input("명령어 입력 (PlaylistRandomRCMD / MusicInfo / PlaylistInfo): ").strip()
 
     if Command_name not in Command_list:
