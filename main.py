@@ -64,11 +64,32 @@ def playlist_info():
         except Exception as e:
             print(f"❌ 해당 플레이리스트를 찾을 수 없습니다: {e}")
 
-    
+def Artist_Info():
+    while True:
+        artist_name = input("아티스트 이름을 입력하세요 (종료: exit): ").strip()
+        if artist_name.lower() == "exit":
+            print("프로그램 종료")
+            break
+
+        try:
+            results = sp.search(q=artist_name, limit=1, type="artist")
+            if results['artists']['items']:
+                artist = results['artists']['items'][0]
+                print("\n[아티스트 정보]")
+                print(f"이름: {artist['name']}")
+                print(f"장르: {', '.join(artist['genres']) if artist['genres'] else '정보 없음'}")
+                print(f"팔로워 수: {artist['followers']['total']:,}")
+                print(f"Spotify 링크: {artist['external_urls']['spotify']}")
+            else:
+                print("❌ 해당 아티스트를 찾을 수 없습니다.")
+        except Exception as e:
+            print(f"❌ 아티스트 정보를 가져오는 중 오류가 발생했습니다: {e}")
+
+            
 
 def main():
-    Command_list = ["PlaylistRandomRCMD", "MusicInfo", "PlaylistInfo"]
-    Command_name = input("명령어 입력 (PlaylistRandomRCMD / MusicInfo / PlaylistInfo): ").strip()
+    Command_list = ["PlaylistRandomRCMD", "MusicInfo", "PlaylistInfo","ArtistInfo"]
+    Command_name = input("명령어 입력 (PlaylistRandomRCMD / MusicInfo / PlaylistInfo/ ArtistInfo): ").strip()
 
     if Command_name not in Command_list:
         print("명령어를 찾을 수 없습니다.")
@@ -82,6 +103,8 @@ def main():
         music_info()
     elif Command_name == "PlaylistInfo":
         playlist_info()
+    elif Command_name == "ArtistInfo":
+        Artist_Info()
         
         
 
