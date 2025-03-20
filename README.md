@@ -1,5 +1,9 @@
 # SpotifyRCMD
 스포티파이 api를 사용한 스포티파이 전용 프로그램 입니다.
+
+프로그램을 실행시키면 PlaylistRandomRCMD , MusicInfo , PlaylistInfo, ArtistInfo 중에서 하나를 고를수 있으며
+명령어를 입력하면 그다음 단계로 넘어갑니다.
+
 # PlaylistRandomRCMD :
 플레이리스트를 입력하면 Random 함수를 이용해 플레이리스트 안에 있는 노래를 한곡 뽑아서 (노래 이름 , 아티스트 이름 , 앨범 이름 , 노래 url) 순으로 출력합니다.
 # MusicInfo :
@@ -17,6 +21,9 @@ https://developer.spotify.com/
 플레이리스트 코드 보는 방법 :
 https://open.spotify.com/playlist/54qHsgWNP2hktsTUZtqEGC
 에서 54qHsgWNP2hktsTUZtqEGC 이부분이 플레이리스트 코드입니다.
+
+# ArtistInfo
+입력칸에 아티스트 이름을 입력하면 아티스트의 정보가 뜹니다.
 
 조만간 디스코드 봇으로도 만들어 보겠습니다.
 
